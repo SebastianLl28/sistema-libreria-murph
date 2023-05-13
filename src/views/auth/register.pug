@@ -1,0 +1,45 @@
+extends ../templates/head-basic
+
+block styles
+  link(rel="stylesheet", href="/css/dist/login.css")
+  link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css")
+
+block content
+  main.main
+
+    if errors
+      div.errors
+        each error in errors
+            p.errors__message(data-parent=error.path )= error.msg
+
+    section.section.section__register
+      form.form(method="POST")
+        h1.form__title Murph
+        div.form__inputs
+          div.form__container
+            label.form__label(for="name") Nombres
+            input.form__input#name(type="text", name="name", placeholder="Ingrese su nombre", value=user?user.name:"")
+            span.form__decoration
+          div.form__container
+            label.form__label(for="lastname") Apellidos
+            input.form__input#lastname(type="text", name="lastname", placeholder="Ingresa su apellido" value=user?user.lastname:"")
+            span.form__decoration
+          div.form__container
+            label.form__label(for="email") correo
+            input.form__input#email(type="text", name="email", placeholder="example@gmail.com" value=user?user.email:"")
+            span.form__decoration
+          div.form__container
+            label.form__label(for="password") Contraseña
+            input.form__input#password(type="password", name="password", placeholder="Ingresa tu contraseña" )
+            span.form__decoration
+          div.form__container
+            label.form__label(for="repeat-password") Repetir Contraseña
+            input.form__input#repeat-password(type="password", name="repeatPassword", placeholder="Repita su contraseña" )
+            span.form__decoration
+          div.form__links
+            a.form__link(href="./login") login
+            a.form__link(href="./recover-password") Recuperar contraseña
+            input.form__submit(type="submit", value="Register")
+
+block scripts
+  script(src="/js/auth/auth.js") 

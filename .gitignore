@@ -1,0 +1,7 @@
+/node_modules
+
+/src/public/css/src
+.env
+tsconfig.json
+task.md
+src/public/css/dist/*.css.map

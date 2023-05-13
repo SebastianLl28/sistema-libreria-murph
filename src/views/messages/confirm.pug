@@ -1,0 +1,11 @@
+extends ../templates/head-basic
+
+block styles
+  link(rel="stylesheet", href="/css/dist/message.css")
+
+block content
+  main.main
+    h2.main__message= message
+    if (confirm)
+      a.main__link(href="/auth/login") Login
+
