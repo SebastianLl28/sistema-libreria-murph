@@ -6,7 +6,7 @@ import UserModel from '../models/User.model'
 const registerUser = async ({ name, lastName, email, password, token }: User): Promise<void> => {
   try {
     const passHash = await encrypter(password)
-    await sendMail(name, lastName, email, token as string)
+    await sendMail({ name, lastName, email, token: token as string })
     await UserModel.create({ name, lastName, email, password: passHash, token })
   } catch (err) {
     throw new Error(err as string)
@@ -25,7 +25,29 @@ const emailIsReigster = async (email: string): Promise<boolean> => {
   }
 }
 
+const changeUserData = async (id: any, prop: keyof User, value: any): Promise<null | User> => {
+  try {
+    const update: any = {}
+    update[prop] = value
+    const user = await UserModel.findByIdAndUpdate(id, update)
+    return user
+  } catch (err) {
+    throw new Error(err as string)
+  }
+}
+
+const searchUserById = async (id: string): Promise<User | null> => {
+  try {
+    const user = await UserModel.findById(id)
+    return user
+  } catch (err) {
+    throw new Error(err as string)
+  }
+}
+
 export {
   registerUser,
-  emailIsReigster
+  emailIsReigster,
+  changeUserData,
+  searchUserById
 }

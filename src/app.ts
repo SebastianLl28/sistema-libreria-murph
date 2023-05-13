@@ -4,7 +4,7 @@ import 'dotenv/config'
 import cookieParser from 'cookie-parser'
 // import { doubleCsrf } from 'csrf-csrf'
 
-import { routerAuth } from './routers'
+import { routerApp, routerAuth } from './routers'
 
 const app = express()
 
@@ -38,6 +38,7 @@ app.get('/', (_req: Request, res: Response) => {
 
 // ?Routers
 app.use('/auth', routerAuth)
+app.use('/app', routerApp)
 
 const PORT = parseInt(process.env.PORT as string)
 app.listen(PORT, () => {

@@ -5,6 +5,10 @@ block styles
 
 block content
   main.main
+    if errors
+      div.errors
+        each error in errors
+            p.errors__message(data-parent=error.path )= error.msg
     section.section
       form.form(method="POST")
         h1.form__title Murph

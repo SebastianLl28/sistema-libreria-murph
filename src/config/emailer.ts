@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer'
 import 'dotenv/config'
 import SMTPTransport from 'nodemailer/lib/smtp-transport'
+import { DataEmail } from '../interface/DataEmail.interface'
 
 const createTransport = (): nodemailer.Transporter<SMTPTransport.SentMessageInfo> => {
   const transport = nodemailer.createTransport({
@@ -15,7 +16,7 @@ const createTransport = (): nodemailer.Transporter<SMTPTransport.SentMessageInfo
   return transport
 }
 
-const sendMail = async (name: string, lastName: string, email: string, token: string): Promise<void> => {
+const sendMail = async ({ name, lastName, email, token }: DataEmail): Promise<void> => {
   const transport = createTransport()
 
   const info = await transport.sendMail({
@@ -29,6 +30,20 @@ const sendMail = async (name: string, lastName: string, email: string, token: st
   console.log(`Mensaje enviado: ${info.messageId}`)
 }
 
+const sendEmailPassword = async ({ name, lastName, email, token }: DataEmail): Promise<void> => {
+  const transporter = createTransport()
+  const info = await transporter.sendMail({
+    from: 'murphCompany@gmail.com',
+    to: `${email}`,
+    subject: 'Hello ✔',
+    html: `<b>haz click en este link para <a href="${process.env.BACKEND_URL as string}:${process.env.PORT as string}/auth/changePassword/${token}">cambiar tu contraseña</a></b>`,
+    text: `Hello ${name} ${lastName}`
+  })
+
+  console.log(info.messageId)
+}
+
 export {
-  sendMail
+  sendMail,
+  sendEmailPassword
 }
