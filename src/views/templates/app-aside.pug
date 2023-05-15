@@ -1,0 +1,72 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Murph #{pagina}
+    link(rel="stylesheet", href="/css/dist/app.css")
+    block style
+
+  body
+    mixin messageBox(rol)
+      aside.aside
+        .aside__menu-container 
+          img.icon.icon__menu(src="/img/icons/icon_menu.svg", alt="icon menu")
+        nav.nav
+          if rol == "admin"
+            ul.nav__list
+              li.nav__element
+                a(href="#") 
+                  img.icon(src="/img/icons/icon_house.svg", alt="icon house")
+                  span.nav__span Inicio
+              li.nav__element
+                a(href="#") 
+                  img.icon(src="/img/icons/icon_category.svg", alt="icon house")
+                  span.nav__span Categoria
+              li.nav__element
+                a(href="#") 
+                  img.icon(src="/img/icons/icon_product.svg", alt="icon house")
+                  span.nav__span Product
+              li.nav__element
+                a(href="#") 
+                  img.icon(src="/img/icons/icon_orden_compra.svg", alt="icon house")
+                  span.nav__span Orden de compra
+          else if rol == "user"
+            ul.nav__list
+              li.nav__element
+                a(href="#") 
+                  img.icon(src="/img/icons/icon_house.svg", alt="icon house")
+                  span.nav__span Inicio
+              li.nav__element
+                a(href="#") 
+                  img.icon(src="/img/icons/icon_product.svg", alt="icon house")
+                  span.nav__span Product
+          else
+            ul.nav__list
+              li.nav__element
+                a(href="#") 
+                  img.icon(src="/img/icons/icon_house.svg", alt="icon house")
+                  span.nav__span Inicio
+        .aside__menu-profile 
+          a(href="#")
+            img.icon(src="/img/icons/icon_user.svg", alt="icon logout")
+            span.nav__span Profile
+          form.form__logout(method="POST" action="/app/logout") 
+            img.icon.icon__logout(src="/img/icons/icon_logout.svg", alt="icon logout")
+            span.nav__span Salir
+            //- li
+            //-   a(href="#") 
+            //-     img.icon(src="/img/icons/icon_category.svg", alt="icon house")
+            //-     span Categor
+      //- if rol == "admin"
+      //-   aside eres un administrador
+      //- else if rol == "user"
+      //-   aside eres un usuario
+      //- else
+      //-   aside que serás loco ._.
+    block content
+    //- https://pugjs.org/language/mixins.html si puedes extender de otras busca mano    
+
+    script(src="/js/app/dashboard.js")
+    block scripts

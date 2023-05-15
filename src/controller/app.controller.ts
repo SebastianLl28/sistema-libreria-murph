@@ -8,6 +8,11 @@ const getDashboard = async (req: Request, res: Response): Promise<void> => {
   })
 }
 
+const postLogout = async (_req: Request, res: Response): Promise<void> => {
+  return res.clearCookie('_token').redirect('/auth/login')
+}
+
 export {
-  getDashboard
+  getDashboard,
+  postLogout
 }

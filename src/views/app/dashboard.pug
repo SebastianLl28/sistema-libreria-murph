@@ -1,2 +1,7 @@
-h1 estas dentro del sistema :D
-h1 hola #{user.name}
+extends ../templates/app-aside
+
+block content
+  +messageBox(user.rol)
+  main.main
+    h1 estas dentro del sistema :D
+    h1 hola #{user.name}
