@@ -140,7 +140,8 @@ body {
   position: fixed;
   width: 4rem;
   height: 100vh;
-  /* overflow: hidden; */
+  /*? 👀👀👀*/
+  overflow: hidden;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -159,6 +160,8 @@ body {
 
 .aside-active {
   width: min(100%, 15rem);
+  align-items: flex-start;
+  padding: 1rem .6rem;
 }
 
 /*? start main  */
@@ -199,6 +202,7 @@ body {
 .nav__list {
   display: flex;
   align-items: center;
+  align-items: flex-start;
   flex-direction: column;
   gap: 5px;
 }
